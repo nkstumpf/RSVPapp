@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" type="text/css" href="./reset.css">
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <link href="https://fonts.googleapis.com/css?family=Lobster|Fjalla+One" rel="stylesheet">
+
+    <title>Menu Planner</title>
+</head>
+
+<body>
+
+    <div id="topBar">
+    </div>
+
+    <header>
+        <h1 id="logo">RSVPme</h1>
+        <h2 id="headerText">Please Choose Your Preferred Entree from the Options Below:</h2>
+    </header>
+    
+    <div id="card">
+        <button id="beef">Steak</button>
+        <button id="chicken">Chicken</button>
+        <button id="fish">Fish</button>
+        <button id="veg">Vegetarian</button>
+    </div>
+
+    <div>
+        <img id="img" src="http://cdn.onlinewebfonts.com/svg/img_549704.png" width="300px" height="auto">
+    </div>
+    <div>
+        <a id="home" href="./index.html">Home</a>
+    </div>
+
+    <!-- Javascript Starts Here -->
+
+    <script>
+
+        const beefBtn = document.getElementById('beef');
+        const chickenBtn = document.getElementById('chicken');
+        const fishBtn = document.getElementById('fish');
+        const vegBtn = document.getElementById('veg');
+
+        const yesBtn = '<button id="yes">Yes</button>';
+        const noBtn = '<button id="no">No</button>';
+        const submitBtn = '<button id="submit">Submit</button>';
+
+
+        const card = document.getElementById('card');
+
+        const headerText = document.getElementById('headerText');
+
+        hideText = () => {
+            headerText.classList.toggle('hidden');
+        }
+
+        populateCard = () => {
+            card.innerHTML = `
+                <h2>Thank You! Your selection has been sent to the kitchen!</h2>
+                <h2>Will you be enjoying a libation with us as well?</h2> 
+                ${yesBtn}
+                ${noBtn}
+                `
+
+                const yes = document.getElementById('yes');
+                const no = document.getElementById('no');
+        }
+
+        popUpForm = () => {
+            card.innerHTML = `
+            <form>
+            <label>How Old Are You?</label>
+            <input id="checkDob" type="number">
+            ${submitBtn}
+            </form>
+            `
+
+            const submit = document.getElementById('submit');
+        }   
+
+        over21 = function () {
+            const userInput = document.getElementById('checkDob').value;
+            console.log(userInput);
+
+            if (userInput >= 21) {
+                card.innerHTML = `
+                <h2>Excellent! You are approved for a drink voucher!</h2>
+                `
+            } else {
+                card.innerHTML = `
+                <h2>Oops! Looks like you aren't quite old enough to drink. Better pre-game!</h2>
+                `
+            }
+            
+        }
+
+    // Test button (only button currently fully wired up)
+
+        beefBtn.addEventListener('click', () => {
+            console.log('You clicked the beef button');
+            hideText();
+            populateCard();
+
+            yes.addEventListener('click', () => {
+                popUpForm();
+
+                submit.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    over21();
+                })
+            })
+
+            no.addEventListener('click', () => {
+                card.innerHTML = `
+                    <h2>No Worries! We have great punch.</h2>
+                    `
+            })
+        })
+
+        chickenBtn.addEventListener('click', () => {
+            console.log('You clicked the chicken button');
+            hideText();
+            populateCard();
+
+            yes.addEventListener('click', () => {
+                popUpForm();
+
+                submit.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    over21();
+                })
+            })
+
+            no.addEventListener('click', () => {
+                card.innerHTML = `
+                    <h2>No Worries! We have great punch.</h2>
+                    `
+            })
+
+        })
+
+        fishBtn.addEventListener('click', () => {
+            console.log('You clicked the fish button');
+            hideText();
+            populateCard();
+
+            yes.addEventListener('click', () => {
+                popUpForm();
+
+                submit.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    over21();
+                })
+            })
+
+            no.addEventListener('click', () => {
+                card.innerHTML = `
+                    <h2>No Worries! We have great punch.</h2>
+                    `
+            })
+
+        })
+
+        vegBtn.addEventListener('click', () => {
+            console.log('You clicked the vegetarian button');
+            hideText();
+            populateCard();
+
+            yes.addEventListener('click', () => {
+                popUpForm();
+
+                submit.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    over21();
+                })
+            })
+
+            no.addEventListener('click', () => {
+                card.innerHTML = `
+                    <h2>No Worries! We have great punch.</h2>
+                    `
+            })
+
+        })
+
+    </script>
+</body>
+
+</html>
